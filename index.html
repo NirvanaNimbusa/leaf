@@ -179,12 +179,16 @@ function switch_style()
 </li>
 <li><a href="#macros">Reference: Macros</a>
 <ul class="sectlevel2">
-<li><a href="#BOOST_LEAF_ASSIGN"><code>BOOST_LEAF_ASSIGN</code></a></li>
-<li><a href="#BOOST_LEAF_AUTO"><code>BOOST_LEAF_AUTO</code></a></li>
-<li><a href="#BOOST_LEAF_CHECK"><code>BOOST_LEAF_CHECK</code></a></li>
-<li><a href="#BOOST_LEAF_EXCEPTION"><code>BOOST_LEAF_EXCEPTION</code></a></li>
-<li><a href="#BOOST_LEAF_NEW_ERROR"><code>BOOST_LEAF_NEW_ERROR</code></a></li>
-<li><a href="#BOOST_LEAF_THROW_EXCEPTION"><code>BOOST_LEAF_THROW_EXCEPTION</code></a></li>
+<li><a href="#_boost_leaf"><code>BOOST_LEAF_</code></a>
+<ul class="sectlevel3">
+<li><a href="#BOOST_LEAF_ASSIGN"><code>ASSIGN</code></a></li>
+<li><a href="#BOOST_LEAF_AUTO"><code>AUTO</code></a></li>
+<li><a href="#BOOST_LEAF_CHECK"><code>CHECK</code></a></li>
+<li><a href="#BOOST_LEAF_EXCEPTION"><code>EXCEPTION</code></a></li>
+<li><a href="#BOOST_LEAF_NEW_ERROR"><code>NEW_ERROR</code></a></li>
+<li><a href="#BOOST_LEAF_THROW_EXCEPTION"><code>THROW_EXCEPTION</code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#rationale">Design</a>
@@ -1041,7 +1045,7 @@ The complete program from this tutorial is available <a href="https://github.com
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-To avoid ambiguities, whenever possible, use the <a href="#exception"><code>exception</code></a> function template when throwing exceptions to ensure that the exception object transports a unique <code>error_id</code>; better yet, use the <a href="#BOOST_LEAF_THROW_EXCEPTION"><code>BOOST_LEAF_THROW_EXCEPTION</code></a> macro, which in addition will capture <code>__FILE__</code> and <code>__LINE__</code>.
+To avoid ambiguities, whenever possible, use the <a href="#exception"><code>exception</code></a> function template when throwing exceptions to ensure that the exception object transports a unique <code>error_id</code>; better yet, use the <a href="#BOOST_LEAF_THROW_EXCEPTION"><code>THROW_EXCEPTION</code></a> macro, which in addition will capture <code>__FILE__</code> and <code>__LINE__</code>.
 </td>
 </tr>
 </table>
@@ -1717,7 +1721,7 @@ See also <a href="#tutorial-std_error_code">Working with <code>std::error_code</
 </div>
 </div>
 <div class="paragraph text-right">
-<p><a href="#try_handle_some"><code>try_handle_some</code></a> | <a href="#result"><code>result</code></a> | <a href="#BOOST_LEAF_AUTO"><code>BOOST_LEAF_AUTO</code></a></p>
+<p><a href="#try_handle_some"><code>try_handle_some</code></a> | <a href="#result"><code>result</code></a> | <a href="#BOOST_LEAF_AUTO"><code>AUTO</code></a></p>
 </div>
 <div class="paragraph">
 <p>The reason this works is that in case it communicates a failure, <code>leaf::result&lt;T&gt;</code> is able to hold a <code>shared_ptr&lt;polymorphic_context&gt;</code> object. That is why earlier instead of calling <code>task()</code> directly, we called <code>leaf::capture</code>: it calls the passed function and, in case that fails, it stores the <code>shared_ptr&lt;polymorphic_context&gt;</code> we created in the returned <code>result&lt;T&gt;</code>, which now doesn&#8217;t just communicate the fact that an error has occurred, but also holds the <code>context</code> object that <code>try_handle_some</code> needs in order to supply a suitable handler with arguments.</p>
@@ -2130,7 +2134,7 @@ Understand that error handlers that take arguments of types that derive from <co
 </div>
 </div>
 <div class="paragraph text-right">
-<p><a href="#result"><code>result</code></a> | <a href="#BOOST_LEAF_AUTO"><code>BOOST_LEAF_AUTO</code></a></p>
+<p><a href="#result"><code>result</code></a> | <a href="#BOOST_LEAF_AUTO"><code>AUTO</code></a></p>
 </div>
 <div class="paragraph">
 <p>Finally, here is a scope that handles the errors&#8201;&#8212;&#8201;it will work correctly regardless of whether <code>error_a</code> and <code>error_b</code> objects are thrown as exceptions or not.</p>
@@ -2161,7 +2165,7 @@ Understand that error handlers that take arguments of types that derive from <co
 </div>
 </div>
 <div class="paragraph text-right">
-<p><a href="#try_handle_all"><code>try_handle_all</code></a> | <a href="#result"><code>result</code></a> | <a href="#BOOST_LEAF_CHECK"><code>BOOST_LEAF_CHECK</code></a></p>
+<p><a href="#try_handle_all"><code>try_handle_all</code></a> | <a href="#result"><code>result</code></a> | <a href="#BOOST_LEAF_CHECK"><code>CHECK</code></a></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2378,7 +2382,7 @@ The complete program illustrating this technique is available <a href="https://g
 </div>
 </div>
 <div class="paragraph text-right">
-<p><a href="#try_handle_all"><code>try_handle_all</code></a> | <a href="#result"><code>result</code></a> | <a href="#BOOST_LEAF_AUTO"><code>BOOST_LEAF_AUTO</code></a> | <a href="#error_info"><code>error_info</code></a></p>
+<p><a href="#try_handle_all"><code>try_handle_all</code></a> | <a href="#result"><code>result</code></a> | <a href="#BOOST_LEAF_AUTO"><code>AUTO</code></a> | <a href="#error_info"><code>error_info</code></a></p>
 </div>
 <div class="colist arabic">
 <table>
@@ -2956,7 +2960,7 @@ See <a href="#match"><code>match</code></a> for examples.
 </div>
 </div>
 <div class="paragraph text-right">
-<p>Reference: <a href="#error_id"><code>error_id</code></a> | <a href="#is_error_id"><code>is_error_id</code></a> | <a href="#new_error"><code>new_error</code></a> | <a href="#current_error"><code>current_error</code></a> | <a href="#polymorphic_context"><code>polymorphic_context</code></a> | <a href="#context_activator"><code>context_activator</code></a> | <a href="#activate_context"><code>activate_context</code></a> | <a href="#is_result_type"><code>is_result_type</code></a> | <a href="#BOOST_LEAF_ASSIGN"><code>BOOST_LEAF_ASSIGN</code></a> | <a href="#BOOST_LEAF_AUTO"><code>BOOST_LEAF_AUTO</code></a> | <a href="#BOOST_LEAF_CHECK"><code>BOOST_LEAF_CHECK</code></a> | <a href="#BOOST_LEAF_NEW_ERROR"><code>BOOST_LEAF_NEW_ERROR</code></a></p>
+<p>Reference: <a href="#error_id"><code>error_id</code></a> | <a href="#is_error_id"><code>is_error_id</code></a> | <a href="#new_error"><code>new_error</code></a> | <a href="#current_error"><code>current_error</code></a> | <a href="#polymorphic_context"><code>polymorphic_context</code></a> | <a href="#context_activator"><code>context_activator</code></a> | <a href="#activate_context"><code>activate_context</code></a> | <a href="#is_result_type"><code>is_result_type</code></a> | <a href="#BOOST_LEAF_ASSIGN"><code>ASSIGN</code></a> | <a href="#BOOST_LEAF_AUTO"><code>AUTO</code></a> | <a href="#BOOST_LEAF_CHECK"><code>CHECK</code></a> | <a href="#BOOST_LEAF_NEW_ERROR"><code>NEW_ERROR</code></a></p>
 </div>
 </div>
 </div>
@@ -3173,7 +3177,7 @@ See <a href="#match"><code>match</code></a> for examples.
 </div>
 </div>
 <div class="paragraph text-right">
-<p>Reference: <a href="#exception"><code>exception</code></a> | <a href="#BOOST_LEAF_EXCEPTION"><code>BOOST_LEAF_EXCEPTION</code></a> | <a href="#BOOST_LEAF_THROW_EXCEPTION"><code>BOOST_LEAF_THROW_EXCEPTION</code></a></p>
+<p>Reference: <a href="#exception"><code>exception</code></a> | <a href="#BOOST_LEAF_EXCEPTION"><code>EXCEPTION</code></a> | <a href="#BOOST_LEAF_THROW_EXCEPTION"><code>THROW_EXCEPTION</code></a></p>
 </div>
 <div class="colist arabic">
 <table>
@@ -3845,7 +3849,7 @@ The first three overloads return an exception object that is associated with a n
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To automatically capture <code>__FILE__</code>, <code>__LINE__</code> and <code>__FUNCTION__</code> with the returned object, use <a href="#BOOST_LEAF_EXCEPTION"><code>BOOST_LEAF_EXCEPTION</code></a> instead of <code>leaf::exception</code>.
+To automatically capture <code>__FILE__</code>, <code>__LINE__</code> and <code>__FUNCTION__</code> with the returned object, use <a href="#BOOST_LEAF_EXCEPTION"><code>EXCEPTION</code></a> instead of <code>leaf::exception</code>.
 </td>
 </tr>
 </table>
@@ -3951,7 +3955,7 @@ An error handler that takes an argument of an exception type (that is, of a type
 </div>
 </div>
 <div class="paragraph text-right">
-<p><a href="#try_handle_some"><code>try_handle_some</code></a> | <a href="#result"><code>result</code></a> | <a href="#BOOST_LEAF_AUTO"><code>BOOST_LEAF_AUTO</code></a></p>
+<p><a href="#try_handle_some"><code>try_handle_some</code></a> | <a href="#result"><code>result</code></a> | <a href="#BOOST_LEAF_AUTO"><code>AUTO</code></a></p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -5646,7 +5650,7 @@ It is probably better to define your own file name wrappers to avoid clashes if 
 </div>
 </div>
 <div class="paragraph">
-<p>The <a href="#BOOST_LEAF_NEW_ERROR"><code>BOOST_LEAF_NEW_ERROR</code></a>, <a href="#BOOST_LEAF_EXCEPTION"><code>BOOST_LEAF_EXCEPTION</code></a> and <a href="#BOOST_LEAF_THROW_EXCEPTION"><code>BOOST_LEAF_THROW_EXCEPTION</code></a> macros capture <code>__FILE__</code>, <code>__LINE__</code> and <code>__FUNCTION__</code> into a <code>e_source_location</code> object.</p>
+<p>The <a href="#BOOST_LEAF_NEW_ERROR"><code>NEW_ERROR</code></a>, <a href="#BOOST_LEAF_EXCEPTION"><code>EXCEPTION</code></a> and <a href="#BOOST_LEAF_THROW_EXCEPTION"><code>THROW_EXCEPTION</code></a> macros capture <code>__FILE__</code>, <code>__LINE__</code> and <code>__FUNCTION__</code> into a <code>e_source_location</code> object.</p>
 </div>
 <hr>
 </div>
@@ -6306,6 +6310,18 @@ Using <code>verbose_diagnostic_info</code> will likely allocate memory dynamical
 <div class="sect1">
 <h2 id="predicates">Reference: Predicates</h2>
 <div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The contents of each Reference section are organized alphabetically.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>A predicate is a special type of error handler argument which enables the <a href="#handler_selection_procedure">handler selection procedure</a> to consider the <em>value</em> of available error objects, not only their type; see <a href="#tutorial-predicates">Using Predicates to Handle Errors</a>.</p>
 </div>
@@ -6986,6 +7002,18 @@ See also <a href="#tutorial-predicates">Using Predicates to Handle Errors</a>.
 <div class="sect1">
 <h2 id="traits">Reference: Traits</h2>
 <div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The contents of each Reference section are organized alphabetically.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="is_predicate"><code>is_predicate</code></h3>
 <div class="listingblock">
@@ -7060,7 +7088,9 @@ The contents of each Reference section are organized alphabetically.
 </div>
 <hr>
 <div class="sect2">
-<h3 id="BOOST_LEAF_ASSIGN"><code>BOOST_LEAF_ASSIGN</code></h3>
+<h3 id="_boost_leaf"><code>BOOST_LEAF_</code></h3>
+<div class="sect3">
+<h4 id="BOOST_LEAF_ASSIGN"><code>ASSIGN</code></h4>
 <div class="listingblock">
 <div class="title">#include &lt;boost/leaf/error.hpp&gt;</div>
 <div class="content">
@@ -7084,15 +7114,15 @@ The contents of each Reference section are organized alphabetically.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-See also <a href="#BOOST_LEAF_AUTO"><code>BOOST_LEAF_AUTO</code></a>.
+See also <a href="#BOOST_LEAF_AUTO"><code>AUTO</code></a>.
 </td>
 </tr>
 </table>
 </div>
 <hr>
 </div>
-<div class="sect2">
-<h3 id="BOOST_LEAF_AUTO"><code>BOOST_LEAF_AUTO</code></h3>
+<div class="sect3">
+<h4 id="BOOST_LEAF_AUTO"><code>AUTO</code></h4>
 <div class="listingblock">
 <div class="title">#include &lt;boost/leaf/error.hpp&gt;</div>
 <div class="content">
@@ -7101,7 +7131,7 @@ See also <a href="#BOOST_LEAF_AUTO"><code>BOOST_LEAF_AUTO</code></a>.
 </div>
 </div>
 <div class="paragraph text-right">
-<p><a href="#BOOST_LEAF_ASSIGN"><code>BOOST_LEAF_ASSIGN</code></a></p>
+<p><a href="#BOOST_LEAF_ASSIGN"><code>ASSIGN</code></a></p>
 </div>
 <div class="paragraph">
 <p><code>BOOST_LEAF_AUTO</code> is useful when calling a function that returns <code>result&lt;T&gt;</code> (other than <code>result&lt;void&gt;</code>), if the desired behavior is to forward any errors to the caller verbatim.</p>
@@ -7157,15 +7187,15 @@ See also <a href="#BOOST_LEAF_AUTO"><code>BOOST_LEAF_AUTO</code></a>.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-See also <a href="#BOOST_LEAF_ASSIGN"><code>BOOST_LEAF_ASSIGN</code></a>.
+See also <a href="#BOOST_LEAF_ASSIGN"><code>ASSIGN</code></a>.
 </td>
 </tr>
 </table>
 </div>
 <hr>
 </div>
-<div class="sect2">
-<h3 id="BOOST_LEAF_CHECK"><code>BOOST_LEAF_CHECK</code></h3>
+<div class="sect3">
+<h4 id="BOOST_LEAF_CHECK"><code>CHECK</code></h4>
 <div class="listingblock">
 <div class="title">#include &lt;boost/leaf/error.hpp&gt;</div>
 <div class="content">
@@ -7219,8 +7249,8 @@ See also <a href="#BOOST_LEAF_ASSIGN"><code>BOOST_LEAF_ASSIGN</code></a>.
 </div>
 <hr>
 </div>
-<div class="sect2">
-<h3 id="BOOST_LEAF_EXCEPTION"><code>BOOST_LEAF_EXCEPTION</code></h3>
+<div class="sect3">
+<h4 id="BOOST_LEAF_EXCEPTION"><code>EXCEPTION</code></h4>
 <div class="listingblock">
 <div class="title">#include &lt;boost/leaf/exception.hpp&gt;</div>
 <div class="content">
@@ -7237,8 +7267,8 @@ See also <a href="#BOOST_LEAF_ASSIGN"><code>BOOST_LEAF_ASSIGN</code></a>.
 </div>
 <hr>
 </div>
-<div class="sect2">
-<h3 id="BOOST_LEAF_NEW_ERROR"><code>BOOST_LEAF_NEW_ERROR</code></h3>
+<div class="sect3">
+<h4 id="BOOST_LEAF_NEW_ERROR"><code>NEW_ERROR</code></h4>
 <div class="listingblock">
 <div class="title">#include &lt;boost/leaf/error.hpp&gt;</div>
 <div class="content">
@@ -7255,8 +7285,8 @@ See also <a href="#BOOST_LEAF_ASSIGN"><code>BOOST_LEAF_ASSIGN</code></a>.
 </div>
 <hr>
 </div>
-<div class="sect2">
-<h3 id="BOOST_LEAF_THROW_EXCEPTION"><code>BOOST_LEAF_THROW_EXCEPTION</code></h3>
+<div class="sect3">
+<h4 id="BOOST_LEAF_THROW_EXCEPTION"><code>THROW_EXCEPTION</code></h4>
 <div class="listingblock">
 <div class="title">#include &lt;boost/leaf/exception.hpp&gt;</div>
 <div class="content">
@@ -7267,9 +7297,10 @@ See also <a href="#BOOST_LEAF_ASSIGN"><code>BOOST_LEAF_ASSIGN</code></a>.
 <dl>
 <dt class="hdlist1">Effects: </dt>
 <dd>
-<p>Throws the exception object returned by <a href="#BOOST_LEAF_EXCEPTION"><code>BOOST_LEAF_EXCEPTION</code></a>.</p>
+<p>Throws the exception object returned by <a href="#BOOST_LEAF_EXCEPTION"><code>EXCEPTION</code></a>.</p>
 </dd>
 </dl>
+</div>
 </div>
 </div>
 </div>
@@ -7710,7 +7741,7 @@ The short answer is that nobody knows how to fix exception specifications in any
 </div>
 </div>
 <div class="paragraph text-right">
-<p><a href="#result"><code>result</code></a> | <a href="#BOOST_LEAF_AUTO"><code>BOOST_LEAF_AUTO</code></a></p>
+<p><a href="#result"><code>result</code></a> | <a href="#BOOST_LEAF_AUTO"><code>AUTO</code></a></p>
 </div>
 <div class="colist arabic">
 <table>
